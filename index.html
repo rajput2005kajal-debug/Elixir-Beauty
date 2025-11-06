@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elixir Beauty Co. | Premium Cosmetics & Skincare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-white text-gray-800">
+  <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 bg-white z-50 flex justify-center items-center">
+    <div class="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-purple-500"></div>
+  </div>
+
+  <!-- ✅ Navigation -->
+  <nav class="bg-white shadow-lg fixed w-full z-40 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="#home" class="text-2xl font-bold text-purple-600">Elixir Beauty Co.</a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="nav-link text-gray-700 hover:text-purple-600">Home</a>
+          <a href="shop.html" class="nav-link text-gray-700 hover:text-purple-600">Shop</a>
+          <a href="#about" class="nav-link text-gray-700 hover:text-purple-600">About</a>
+          <a href="#testimonials" class="nav-link text-gray-700 hover:text-purple-600">Testimonials</a>
+          <a href="#contact" class="nav-link text-gray-700 hover:text-purple-600">Contact</a>
+        </div>
+
+        <!-- Desktop Buttons -->
+        <div class="hidden md:flex items-center space-x-4">
+          <!-- Search -->
+          <button id="search-btn" class="p-2 rounded-full hover:bg-gray-100">
+            <i class="fas fa-search text-gray-600"></i>
+          </button>
+
+          <!-- Cart -->
+          <button id="cart-btn" class="p-2 rounded-full hover:bg-gray-100 relative">
+            <i class="fas fa-shopping-cart text-gray-600"></i>
+            <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </button>
+
+          <!-- Login / Signup -->
+          <div id="auth-buttons" class="flex items-center space-x-2">
+            <button id="open-login" class="btn-secondary px-4 py-2 text-sm">Login</button>
+            <button id="open-signup" class="btn-primary px-4 py-2 text-sm">Sign Up</button>
+          </div>
+
+          <!-- User Info (after login) -->
+          <div id="user-info" class="hidden items-center space-x-2">
+            <span id="user-email" class="text-sm text-gray-700"></span>
+            <button id="logout-btn" class="btn-secondary text-sm">Logout</button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" class="p-2 rounded-md text-gray-700 hover:text-purple-600 focus:outline-none">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Spacer for fixed nav -->
+  <div class="pt-20"></div>
+
+  <!-- ✅ Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="flex flex-col h-full p-4">
+      <div class="flex justify-between items-center mb-8">
+        <span class="text-2xl font-bold text-purple-600">Elixir Beauty Co.</span>
+        <button id="close-menu-btn" class="p-2 rounded-md text-gray-700 hover:text-purple-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Links -->
+      <div class="flex flex-col space-y-4 flex-grow">
+        <a href="#home" class="text-xl font-medium text-gray-700 hover:text-purple-600 py-2">Home</a>
+        <a href="shop.html" class="text-xl font-medium text-gray-700 hover:text-purple-600 py-2">Shop</a>
+        <a href="#about" class="text-xl font-medium text-gray-700 hover:text-purple-600 py-2">About</a>
+        <a href="#testimonials" class="text-xl font-medium text-gray-700 hover:text-purple-600 py-2">Testimonials</a>
+        <a href="#contact" class="text-xl font-medium text-gray-700 hover:text-purple-600 py-2">Contact</a>
+      </div>
+
+      <!-- Auth Buttons -->
+      <div id="mobile-auth" class="flex flex-col space-y-3 mt-8">
+        <button id="open-login-mobile" class="btn-secondary w-full">Login</button>
+        <button id="open-signup-mobile" class="btn-primary w-full">Sign Up</button>
+      </div>
+
+      <!-- Logout (after login) -->
+      <div id="mobile-logout" class="hidden flex-col space-y-3 mt-8">
+        <p id="mobile-user-email" class="text-center text-gray-700 text-sm"></p>
+        <button id="logout-btn-mobile" class="btn-secondary w-full">Logout</button>
+      </div>
+
+      <!-- Search + Cart -->
+      <div class="flex justify-center space-x-6 mt-6">
+        <button class="p-2 rounded-full hover:bg-gray-100">
+          <i class="fas fa-search text-gray-600"></i>
+        </button>
+        <button id="cart-btn-mobile" class="p-2 rounded-full hover:bg-gray-100 relative">
+          <i class="fas fa-shopping-cart text-gray-600"></i>
+          <span id="cart-count-mobile" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="hidden fixed inset-0 bg-white bg-opacity-95 z-50 flex justify-center items-center p-4">
+    <div class="w-full max-w-2xl">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-800">Search Products</h2>
+        <button id="close-search-btn" class="p-2 rounded-md text-gray-700 hover:text-purple-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="relative">
+        <input type="text" placeholder="Search for products, brands..." class="w-full px-6 py-4 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+        <button class="absolute right-0 top-0 h-full px-6 text-purple-600">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="mt-8">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Popular Searches</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-purple-100">Skincare</span>
+          <span class="px-4 py-2 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-purple-100">Makeup</span>
+          <span class="px-4 py-2 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-purple-100">Haircare</span>
+          <span class="px-4 py-2 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-purple-100">Fragrance</span>
+          <span class="px-4 py-2 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-purple-100">Organic</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero relative bg-[url('images/main.jpg')] bg-cover bg-center h-[60vh] flex items-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white">Reveal Your <span class="text-purple-300">Natural</span> Glow</h1>
+      <p class="text-xl md:text-2xl mb-8 text-gray-200">Premium organic beauty products crafted for all skin types</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#shop" class="btn-primary inline-block">Shop Now</a>
+        <a href="#about" class="btn-secondary inline-block">Our Story</a>
+      </div>
+    </div>
+
+    <div class="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
+      <a href="#features" class="text-white"><i class="fas fa-chevron-down"></i></a>
+    </div>
+  </section>
+
+    <div class="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
+      <a href="#features" class="text-white"><i class="fas fa-chevron-down"></i></a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-purple-600">Why Choose Elixir Beauty Co.</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">Our products are crafted with love and premium ingredients to enhance your natural beauty</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="feature-card bg-white p-8 text-center">
+          <div class="mb-6 inline-block p-4 rounded-full bg-purple-100">
+            <i class="fas fa-leaf text-purple-600 text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Organic Ingredients</h3>
+          <p class="text-gray-600">Made with 100% natural and organic ingredients that are good for your skin and the environment.</p>
+        </div>
+
+        <div class="feature-card bg-white p-8 text-center">
+          <div class="mb-6 inline-block p-4 rounded-full bg-purple-100">
+            <i class="fas fa-biohazard text-purple-600 text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Cruelty-Free</h3>
+          <p class="text-gray-600">All our products are vegan and never tested on animals.</p>
+        </div>
+
+        <div class="feature-card bg-white p-8 text-center">
+          <div class="mb-6 inline-block p-4 rounded-full bg-purple-100">
+            <i class="fas fa-gem text-purple-600 text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Luxury Quality</h3>
+          <p class="text-gray-600">Premium formulations with high-quality ingredients that deliver visible results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products (same IDs/classes as shop) -->
+<section id="shop" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-purple-600">Our Best Sellers</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">Discover our most loved products</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Product 1 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/coconut oil.jpg" alt="Radiant Glow Serum" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button class="btn-secondary add-to-cart" data-id="index1" data-name="Coconut Milk Cleanser" data-price="499.00">Add to Cart <i class="fas fa-plus ml-2"></i></button>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg mb-1">Coconut Milk Cleanser</h3>
+          <p class="text-gray-600 mb-3">Soft cleanser for daily glow.</p>
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-purple-600">₹499</span>
+            <button class="text-purple-600 hover:text-purple-800"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/face mask.jpg" alt="Charcoal Detox Mask" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button class="btn-secondary add-to-cart" data-id="index2" data-name="Charcoal Detox Mask" data-price="199.00">Add to Cart <i class="fas fa-plus ml-2"></i></button>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg mb-1">Charcoal Detox Mask</h3>
+          <p class="text-gray-600 mb-3">Deep pore detox & freshness.</p>
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-purple-600">₹199</span>
+            <button class="text-purple-600 hover:text-purple-800"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/lip balm.webp" alt="Berry Lip Balm" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button class="btn-secondary add-to-cart" data-id="index3" data-name="Berry Lip Balm" data-price="199.00">Add to Cart <i class="fas fa-plus ml-2"></i></button>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg mb-1">Berry Lip Balm</h3>
+          <p class="text-gray-600 mb-3">Soft, glossy lips all day.</p>
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-purple-600">₹199</span>
+            <button class="text-purple-600 hover:text-purple-800"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/body butter.jpeg" alt="Vanilla Body Butter" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button class="btn-secondary add-to-cart" data-id="index4" data-name="Vanilla Body Butter" data-price="399.00">Add to Cart <i class="fas fa-plus ml-2"></i></button>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg mb-1">Vanilla Body Butter</h3>
+          <p class="text-gray-600 mb-3">Silky-smooth, rich hydration.</p>
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-purple-600">₹399</span>
+            <button class="text-purple-600 hover:text-purple-800"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="shop.html" class="btn-primary inline-block">View All Products</a>
+    </div>
+  </div>
+</section>
+
+    <!-- Brand Story -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="relative overflow-hidden rounded-xl shadow-xl h-96">
+                        <img src="images/ourstory.jpg" alt="Founder of Elixir Beauty Co. preparing artisanal beauty products in laboratory with botanical ingredients" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-purple-600 p-2 rounded-xl shadow-lg w-3/4">
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-star text-yellow-400 mr-2"></i>
+                                <p class="font-semibold">5.0 Overall Satisfaction</p>
+                            </div>
+                            <p class="text-sm text-gray-600">Based on 2,489 reviews</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-purple-600">Our Story</h2>
+                    <p class="text-lg text-gray-600 mb-4">Elixir Beauty Co. was founded in 2015 with a simple mission: to create clean, effective beauty products that enhance natural beauty without harsh chemicals.</p>
+                    <p class="text-lg text-gray-600 mb-6">Our founder, Sophia Chen, started mixing small batches of skincare in her kitchen after struggling to find products that worked for her sensitive skin. Today, we're proud to be a trusted name in clean beauty, with products sold worldwide.</p>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-center mb-2">
+                            <div class="mr-4 p-2 bg-purple-100 rounded-full">
+                                <i class="fas fa-heart text-purple-600"></i>
+                            </div>
+                            <p class="font-semibold">Formulated with natural ingredients</p>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <div class="mr-4 p-2 bg-purple-100 rounded-full">
+                                <i class="fas fa-leaf text-purple-600"></i>
+                            </div>
+                            <p class="font-semibold">Cruelty-free & vegan</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="mr-4 p-2 bg-purple-100 rounded-full">
+                                <i class="fas fa-check-circle text-purple-600"></i>
+                            </div>
+                            <p class="font-semibold">Dermatologist-tested</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="window.location.href='ourstory.html'" class="btn-primary hover:animate-pulse">Learn More</button>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-purple-600">Beauty Stories</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">What our customers say about us</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="images/testi1.jpg" alt="Customer Olivia Martinez smiling with flawless makeup" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Olivia Martinez</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The Radiant Glow Serum has transformed my skin! After just two weeks, my complexion is brighter and more even. I've gotten so many compliments!"</p>
+                    <div class="mt-4 pt-2 border-t border-gray-100 text-sm text-gray-500">
+                        Purchased: Radiant Glow Serum
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="images/testi2.webp" alt="Customer James Wilson with clear skin and groomed beard" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">James Wilson</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"As a man with sensitive skin, I've struggled to find products that work for me. The Hydration Night Cream is gentle but incredibly effective."</p>
+                    <div class="mt-4 pt-2 border-t border-gray-100 text-sm text-gray-500">
+                        Purchased: Hydration Night Cream
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="images/testi3.jpg" alt="Customer Sarah Johnson with glossy hair wearing stylish outfit" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sarah Johnson</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star-half-alt text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The Luxe Matte Lipsticks have the perfect formula - long-lasting but not drying. I own every shade and wear them daily!"</p>
+                    <div class="mt-4 pt-2 border-t border-gray-100 text-sm text-gray-500">
+                        Purchased: Luxe Matte Lipstick
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-purple-600">Frequently Asked Questions</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Find answers to common questions about our products</p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="accordion border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full text-left p-6 font-semibold flex justify-between items-center bg-gray-50 hover:bg-purple-50 transition-colors">
+                        <span>Are Elixir Beauty Co. products tested on animals?</span>
+                        <i class="fas fa-plus transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0">
+                            <p class="text-gray-600">No, we are proud to be a cruelty-free brand. None of our products or ingredients are tested on animals, and we are certified by Leaping Bunny.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="accordion border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full text-left p-6 font-semibold flex justify-between items-center bg-gray-50 hover:bg-purple-50 transition-colors">
+                        <span>What's your return policy?</span>
+                        <i class="fas fa-plus transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0">
+                            <p class="text-gray-600">We offer a 30-day satisfaction guarantee. If you're not happy with your purchase, you can return it within 30 days of delivery for a full refund.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="accordion border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full text-left p-6 font-semibold flex justify-between items-center bg-gray-50 hover:bg-purple-50 transition-colors">
+                        <span>Are your products suitable for sensitive skin?</span>
+                        <i class="fas fa-plus transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0">
+                            <p class="text-gray-600">Yes! Our products are formulated without common irritants like parabens, sulfates, phthalates, and synthetic fragrances. However, we always recommend doing a patch test first if you have sensitive skin.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="accordion border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full text-left p-6 font-semibold flex justify-between items-center bg-gray-50 hover:bg-purple-50 transition-colors">
+                        <span>Where are your products made?</span>
+                        <i class="fas fa-plus transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0">
+                            <p class="text-gray-600">All Elixir Beauty Co. products are proudly made in our eco-friendly facility in California, USA, using sustainably sourced ingredients whenever possible.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="accordion border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full text-left p-6 font-semibold flex justify-between items-center bg-gray-50 hover:bg-purple-50 transition-colors">
+                        <span>Do you offer international shipping?</span>
+                        <i class="fas fa-plus transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0">
+                            <p class="text-gray-600">Yes! We ship worldwide. Shipping costs and delivery times vary by country. During checkout, you'll see the shipping options available for your location.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ 6 -->
+                <div class="accordion border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full text-left p-6 font-semibold flex justify-between items-center bg-gray-50 hover:bg-purple-50 transition-colors">
+                        <span>How can I track my order?</span>
+                        <i class="fas fa-plus transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0">
+                            <p class="text-gray-600">After your order ships, you'll receive a confirmation email with a tracking number. You can click on the tracking number to see your package's status and estimated delivery date.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <h3 class="text-xl font-bold mb-4">Still have questions?</h3>
+                <button id="contact-btn" class="btn-primary hover:animate-pulse">Contact Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-purple-600">Get In Touch</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">We'd love to hear from you! Reach out with any questions or feedback.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <form id="contactForm" class="space-y-6">
+  <div>
+    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+    <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500" placeholder="Your name" required>
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+    <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500" placeholder="Your email" required>
+  </div>
+
+  <div>
+    <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+    <select id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500" required>
+      <option>Product Inquiry</option>
+      <option>Order Support</option>
+      <option>Shipping Question</option>
+      <option>Product Feedback</option>
+      <option>Other</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+    <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500" placeholder="Your message" required></textarea>
+  </div>
+
+  <button type="submit" class="btn-primary w-full hover:animate-pulse">Send Message</button>
+</form>
+
+                </div>
+                
+                <div>
+                    <div class="bg-white rounded-xl shadow-lg p-8 h-full">
+                        <h3 class="text-xl font-bold mb-6 text-purple-600">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 pt-1">
+                                    <i class="fas fa-map-marker-alt text-purple-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-semibold">Address</h4>
+                                    <p class="text-gray-600">123 Beauty Lane, Suite 200<br>San Francisco, CA 94107</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 pt-1">
+                                    <i class="fas fa-phone-alt text-purple-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-semibold">Phone</h4>
+                                    <p class="text-gray-600">(555) 123-4567</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 pt-1">
+                                    <i class="fas fa-envelope text-purple-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-gray-600">hello@elixirbeautyco.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <h4 class="font-semibold mb-4">Follow Us</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white transition-colors">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white transition-colors">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white transition-colors">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white transition-colors">
+                                        <i class="fab fa-pinterest-p"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-purple-900 text-white pt-12 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Elixir Beauty Co.</h4>
+                    <p class="text-purple-200 mb-4">Premium organic beauty products crafted for all skin types.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-purple-200 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-purple-200 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-purple-200 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-purple-200 hover:text-white"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-purple-200 hover:text-white">All Products</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Skincare</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Makeup</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Haircare</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Fragrance</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">About</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-purple-200 hover:text-white">Our Story</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Ingredients</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Sustainability</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Press</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Customer Care</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-purple-200 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-purple-200 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-purple-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-purple-300 text-sm mb-4 md:mb-0">© 2025 Elixir Beauty Co. — Redefining clean beauty, one glow at a time.</p>
+               
+            </div>
+        </div>
+    </footer>
+
+   <!-- Cart Overlay (IMPORTANT: this was missing on index previously) -->
+  <div id="cart-overlay" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 z-50 flex justify-end">
+    <div class="bg-white w-full max-w-md h-full transform transition-transform duration-300 translate-x-full">
+      <div class="flex justify-between items-center p-4 border-b">
+        <h3 class="text-xl font-bold">Your Cart (<span id="cart-count-title">0</span>)</h3>
+        <button id="close-cart-btn" class="p-2 rounded-md text-gray-700 hover:text-purple-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Cart items container (script.js updates this) -->
+      <div id="cart-items" class="p-4 overflow-y-auto" style="height: calc(100% - 180px);">
+        <div class="text-center py-20 text-gray-500">
+          <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+          <p class="text-lg">Your cart is empty</p>
+          <p class="text-sm mt-2">Start shopping to add items to your cart</p>
+        </div>
+      </div>
+
+      <!-- Cart footer with subtotal + pay button -->
+      <div class="absolute bottom-0 left-0 right-0 bg-white border-t p-4">
+        <div class="flex justify-between mb-4">
+          <span class="font-semibold">Subtotal:</span>
+          <span id="cart-subtotal">₹0.00</span>
+        </div>
+        <div class="flex flex-col gap-3">
+          <button id="paynow-btn" class="btn-secondary w-full disabled:opacity-50 disabled:cursor-not-allowed" disabled>Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Option Modal -->
+ <!-- Payment Option Modal -->
+<div id="payment-option-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+  <div class="bg-white p-6 rounded-lg w-80 text-center shadow-lg relative">
+    <h2 class="text-xl font-bold mb-4">Select Payment Method</h2>
+    <button id="cod-btn" class="btn-secondary w-full mb-3">Cash on Delivery</button>
+    <button id="qrpay-btn" class="btn-secondary w-full">Pay via QR</button>
+    <button id="close-payment-option" class="absolute top-2 right-2 text-gray-600 hover:text-red-500">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>
+
+  <!-- QR Code Modal -->
+  <div id="qr-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg text-center relative">
+      <button id="close-qr" class="absolute top-2 right-2 text-gray-600 hover:text-red-500">
+        <i class="fas fa-times"></i>
+      </button>
+      <h2 class="text-xl font-bold mb-4">Scan to Pay</h2>
+      <img id="qr-img" src="" alt="QR Code" class="mx-auto mb-4 w-48 h-48" />
+      <button id="confirm-order" class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded">Confirm Payment</button>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="success-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center">
+    <div class="bg-white p-6 rounded-lg text-center shadow-lg">
+      <h2 class="text-2xl font-bold text-purple-600 mb-4">🎉 Order Placed!</h2>
+      <p class="text-gray-600 mb-4">Thank you for your order. You’ll receive an email confirmation shortly.</p>
+      <button id="close-success" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded">Okay</button>
+    </div>
+  </div>
+
+  <!-- LOGIN / SIGNUP MODALS -->
+  <!-- Signup Modal -->
+  <div id="signup-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Create an account</h3>
+        <button id="close-signup" class="text-gray-600"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="signup-form" class="space-y-4">
+        <input id="signup-name" required placeholder="Full name" class="w-full px-4 py-3 border rounded" />
+        <input id="signup-email" required type="email" placeholder="Email" class="w-full px-4 py-3 border rounded" />
+        <input id="signup-password" required type="password" placeholder="Password (min 6)" class="w-full px-4 py-3 border rounded" />
+        <button type="submit" class="btn-primary w-full">Create account</button>
+      </form>
+      <p class="text-sm mt-3">Already have an account? <button id="goto-login-from-signup" class="text-purple-600 font-semibold">Login</button></p>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Welcome back</h3>
+        <button id="close-login" class="text-gray-600"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="login-form" class="space-y-4">
+        <input id="login-email" required type="email" placeholder="Email" class="w-full px-4 py-3 border rounded" />
+        <input id="login-password" required type="password" placeholder="Password" class="w-full px-4 py-3 border rounded" />
+        <button type="submit" class="btn-primary w-full">Login</button>
+      </form>
+      <p class="text-sm mt-3">Don't have an account? <button id="goto-signup-from-login" class="text-purple-600 font-semibold">Create one</button></p>
+    </div>
+  </div>
+
+  <!-- Back to top button -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 bg-purple-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transform translate-y-20 transition-transform">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Runs AFTER script.js so we can replace button handlers
+    document.addEventListener('DOMContentLoaded', () => {
+      const API_BASE = 'http://localhost:5000';
+
+      // UI elements
+      const signupModal = document.getElementById('signup-modal');
+      const loginModal = document.getElementById('login-modal');
+      const openSignup = document.getElementById('open-signup');
+      const openSignupMobile = document.getElementById('open-signup-mobile');
+      const openLogin = document.getElementById('open-login');
+      const openLoginMobile = document.getElementById('open-login-mobile');
+      const closeSignup = document.getElementById('close-signup');
+      const closeLogin = document.getElementById('close-login');
+      const gotoLoginFromSignup = document.getElementById('goto-login-from-signup');
+      const gotoSignupFromLogin = document.getElementById('goto-signup-from-login');
+      const signupForm = document.getElementById('signup-form');
+      const loginForm = document.getElementById('login-form');
+      const authButtons = document.getElementById('auth-buttons');
+      const userInfo = document.getElementById('user-info');
+      const userEmailSpan = document.getElementById('user-email');
+      const logoutBtn = document.getElementById('logout-btn');
+      const logoutBtnMobile = document.getElementById('logout-btn-mobile');
+      const mobileLogout = document.getElementById('mobile-logout');
+      const mobileAuth = document.getElementById('mobile-auth');
+      const mobileUserEmail = document.getElementById('mobile-user-email');
+
+      // Payment / order buttons
+      const payNowBtn = document.getElementById('paynow-btn');
+      const paymentOptionOverlay = document.getElementById('payment-option-overlay');
+      const codBtn = document.getElementById('cod-btn');
+      const qrPayBtn = document.getElementById('qrpay-btn');
+      const confirmOrderBtn = document.getElementById('confirm-order');
+      const qrOverlay = document.getElementById('qr-overlay');
+      const qrImg = document.getElementById('qr-img');
+      const closePaymentOption = document.getElementById('close-payment-option');
+
+      // helper: token storage
+      function setAuth(token, email) {
+        localStorage.setItem('elixir_token', token);
+        if (email) localStorage.setItem('elixir_email', email);
+        updateAuthUI();
+      }
+      function clearAuth() {
+        localStorage.removeItem('elixir_token');
+        localStorage.removeItem('elixir_email');
+        updateAuthUI();
+      }
+      function getToken() {
+        return localStorage.getItem('elixir_token');
+      }
+      function getEmail() {
+        return localStorage.getItem('elixir_email');
+      }
+
+      // update nav according to login state
+      function updateAuthUI() {
+        const token = getToken();
+        if (token) {
+          authButtons?.classList?.add('hidden');
+          userInfo?.classList?.remove('hidden');
+          userEmailSpan.textContent = getEmail() || 'You';
+          mobileAuth?.classList?.add('hidden');
+          mobileLogout?.classList?.remove('hidden');
+          mobileUserEmail.textContent = getEmail() || '';
+        } else {
+          authButtons?.classList?.remove('hidden');
+          userInfo?.classList?.add('hidden');
+          mobileAuth?.classList?.remove('hidden');
+          mobileLogout?.classList?.add('hidden');
+          userEmailSpan.textContent = '';
+          mobileUserEmail.textContent = '';
+        }
+      }
+      updateAuthUI();
+
+      // show/hide modals
+      function show(elem){ elem.classList.remove('hidden'); }
+      function hide(elem){ elem.classList.add('hidden'); }
+
+      // open/close hookups
+      openSignup?.addEventListener('click', () => show(signupModal));
+      openSignupMobile?.addEventListener('click', () => { show(signupModal); hide(document.getElementById('mobile-menu')); });
+      openLogin?.addEventListener('click', () => show(loginModal));
+      openLoginMobile?.addEventListener('click', () => { show(loginModal); hide(document.getElementById('mobile-menu')); });
+      closeSignup?.addEventListener('click', () => hide(signupModal));
+      closeLogin?.addEventListener('click', () => hide(loginModal));
+      gotoLoginFromSignup?.addEventListener('click', () => { hide(signupModal); show(loginModal); });
+      gotoSignupFromLogin?.addEventListener('click', () => { hide(loginModal); show(signupModal); });
+
+      // signup submit
+      signupForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('signup-name').value.trim();
+        const email = document.getElementById('signup-email').value.trim();
+        const password = document.getElementById('signup-password').value;
+
+        if (!name || !email || !password) return alert('Please fill all fields');
+        try {
+          const res = await fetch(API_BASE + '/api/signup', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ name, email, password })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.message || 'Signup failed');
+          alert('Signup successful — please login now');
+          hide(signupModal);
+          show(loginModal);
+          // prefill login email
+          document.getElementById('login-email').value = email;
+        } catch (err) {
+          alert('Signup error: ' + err.message);
+        }
+      });
+
+      // login submit
+      loginForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value;
+        if (!email || !password) return alert('Please enter credentials');
+
+        try {
+          const res = await fetch(API_BASE + '/api/login', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ email, password })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.message || 'Login failed');
+          const token = data.token;
+          if (!token) throw new Error('No token returned from server');
+          setAuth(token, email);
+          hide(loginModal);
+          alert('Login successful');
+        } catch (err) {
+          alert('Login error: ' + err.message);
+        }
+      });
+
+      // logout
+      logoutBtn?.addEventListener('click', () => { clearAuth(); alert('Logged out'); });
+      logoutBtnMobile?.addEventListener('click', () => { clearAuth(); hide(document.getElementById('mobile-menu')); alert('Logged out'); });
+
+      // ---------------------------
+      // Replace Pay/Payment handlers so they use token
+      // ---------------------------
+      function replaceButton(originalId, newHandler) {
+        const orig = document.getElementById(originalId);
+        if (!orig) return;
+        const clone = orig.cloneNode(true);
+        orig.parentNode.replaceChild(clone, orig);
+        clone.addEventListener('click', newHandler);
+        return clone;
+      }
+
+      // When clicking Pay Now — ensure user is logged in, otherwise show login modal
+      replaceButton('paynow-btn', (e) => {
+        const token = getToken();
+        if (!token) {
+          alert('Please login to continue to payment.');
+          show(loginModal);
+          return;
+        }
+        // open payment overlay (original UI)
+        if (paymentOptionOverlay) paymentOptionOverlay.classList.remove('hidden');
+        document.body.style.overflowY = 'hidden';
+      });
+
+      // Safe order sending function (with Authorization header)
+      async function saveOrderToServer(paymentMethod) {
+        const token = getToken();
+        if (!token) {
+          alert('Please login first.');
+          show(loginModal);
+          return;
+        }
+
+        // collect order data from localStorage cart (script.js stores it)
+        let cart = [];
+        try {
+          cart = JSON.parse(localStorage.getItem('cart')) || [];
+        } catch (err) { cart = []; }
+
+        if (!cart.length) {
+          alert('Your cart is empty.');
+          return;
+        }
+
+        // compute total
+        const total = cart.reduce((s, it) => s + (parseFloat(it.price) || 0) * (it.quantity || 1), 0).toFixed(2);
+
+        const payload = {
+          name: localStorage.getItem('elixir_email') || 'Valued Customer',
+          email: localStorage.getItem('elixir_email'),
+          paymentMethod,
+          totalAmount: total,
+          items: cart
+        };
+
+        try {
+          const res = await fetch(API_BASE + '/api/save-order', {
+            method: 'POST',
+            headers: {
+              'Content-Type':'application/json',
+              'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.message || 'Order save failed');
+
+          // success UI: hide overlays, clear cart, show success overlay
+          // hide payment overlays
+          if (paymentOptionOverlay) paymentOptionOverlay.classList.add('hidden');
+          if (qrOverlay) qrOverlay.classList.add('hidden');
+          if (document.getElementById('success-overlay')) {
+            document.getElementById('success-overlay').classList.remove('hidden');
+            document.body.style.overflowY = 'hidden';
+            const p = document.querySelector('#success-overlay p');
+            if (p) p.textContent = `Your order of ₹₹{total} has been placed. Confirmation sent to ₹{payload.email || 'your email'}.`;
+          }
+          // clear cart
+          localStorage.removeItem('cart');
+          // update cart UI if script.js exposes anything — we'll just refresh counts
+          const cartCountEl = document.getElementById('cart-count');
+          const cartCountTitle = document.getElementById('cart-count-title');
+          if (cartCountEl) cartCountEl.textContent = 0;
+          if (cartCountTitle) cartCountTitle.textContent = 0;
+          console.log('Order saved:', data);
+        } catch (err) {
+          console.error('Order error:', err);
+          alert('Order failed: ' + err.message);
+        }
+      }
+
+      // Replace COD button to call our secure save
+      replaceButton('cod-btn', (e) => {
+        // hide payment overlay, call save
+        if (paymentOptionOverlay) paymentOptionOverlay.classList.add('hidden');
+        saveOrderToServer('Cash on Delivery');
+      });
+
+      // Replace QR Pay button — show qr + set code; user will confirm to complete order
+      replaceButton('qrpay-btn', (e) => {
+        const token = getToken();
+        if (!token) { alert('Please login to pay via QR'); show(loginModal); return; }
+        // compute total from cart
+        let cart = [];
+        try { cart = JSON.parse(localStorage.getItem('cart')) || []; } catch(e){ cart = []; }
+        const total = cart.reduce((s, it) => s + (parseFloat(it.price)||0) * (it.quantity||1), 0).toFixed(2);
+        if (qrImg) qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=8980036624@ibl&pn=ElixirBeauty&am=₹{total}`;
+        if (paymentOptionOverlay) paymentOptionOverlay.classList.add('hidden');
+        if (qrOverlay) qrOverlay.classList.remove('hidden');
+        document.body.style.overflowY = 'hidden';
+      });
+
+      // Confirm order after scanning QR
+      replaceButton('confirm-order', async (e) => {
+        if (qrOverlay) qrOverlay.classList.add('hidden');
+        await saveOrderToServer('QR Payment');
+      });
+
+      // close payment overlay handler (exists in DOM)
+      document.getElementById('close-payment-option')?.addEventListener('click', () => {
+        paymentOptionOverlay.classList.add('hidden');
+        document.body.style.overflowY = 'auto';
+      });
+
+      // close qr overlay
+      document.getElementById('close-qr')?.addEventListener('click', () => {
+        qrOverlay.classList.add('hidden');
+        document.body.style.overflowY = 'auto';
+      });
+
+      // success close clears cart and UI
+      document.getElementById('close-success')?.addEventListener('click', () => {
+        document.getElementById('success-overlay')?.classList.add('hidden');
+        document.body.style.overflowY = 'auto';
+      });
+
+      // Make mobile menu open/close behave same as before (if you have handlers in script.js they may also run)
+      document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+        const mm = document.getElementById('mobile-menu');
+        if (mm) { mm.classList.remove('hidden'); setTimeout(()=>mm.classList.remove('translate-x-full'), 10); }
+      });
+      document.getElementById('close-menu-btn')?.addEventListener('click', () => {
+        const mm = document.getElementById('mobile-menu');
+        if (mm) { mm.classList.add('translate-x-full'); setTimeout(()=>mm.classList.add('hidden'), 300); }
+      });
+    });
+  </script>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const subject = document.getElementById("subject").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  try {
+    const res = await fetch("http://localhost:5000/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, subject, message })
+    });
+
+    const result = await res.json();
+    if (result.success) {
+      alert("✅ Message sent successfully!");
+      e.target.reset();
+    } else {
+      alert("❌ " + result.message);
+    }
+  } catch (error) {
+    alert("⚠️ Server connection error. Please try again.");
+    console.error(error);
+  }
+});
+</script>
+
+<script>
+  // Smooth scroll from FAQ "Contact Us" to contact section
+  document.addEventListener("DOMContentLoaded", () => {
+    const contactBtn = document.getElementById("contact-btn");
+    const contactSection = document.getElementById("contact");
+
+    if (contactBtn && contactSection) {
+      contactBtn.addEventListener("click", () => {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  });
+</script>
+
+
+
+  <!-- EmailJS (optional) + main script -->
+  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

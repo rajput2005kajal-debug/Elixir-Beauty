@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop | Elixir Beauty Co.</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="bg-white shadow-lg fixed w-full z-40 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <a href="index.html" class="text-2xl font-bold text-purple-600">Elixir Beauty Co.</a>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="index.html#home" class="nav-link text-gray-700 hover:text-purple-600">Home</a>
+        <a href="shop.html" class="nav-link text-purple-600 font-semibold">Shop</a>
+        <a href="index.html#about" class="nav-link text-gray-700 hover:text-purple-600">About</a>
+        <a href="index.html#testimonials" class="nav-link text-gray-700 hover:text-purple-600">Testimonials</a>
+        <a href="index.html#contact" class="nav-link text-gray-700 hover:text-purple-600">Contact</a>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button id="cart-btn" class="p-2 rounded-full hover:bg-gray-100 relative">
+          <i class="fas fa-shopping-cart text-gray-700 text-lg"></i>
+          <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer -->
+<div class="pt-20"></div>
+
+<!-- Products Section -->
+<section class="py-20 bg-gray-50" id="shop">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-purple-600 mb-4">Shop Our Collection</h2>
+    <p class="text-lg text-gray-600 mb-12">Luxury skincare and beauty, crafted naturally.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Product 1 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/serum.jpg" alt="Radiant Glow Serum" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <button class="btn-secondary add-to-cart" data-id="shop1" data-name="Radiant Glow Serum" data-price="499.00">Add to Cart</button>
+          </div>
+        </div>
+        <div class="p-4 text-left">
+          <h3 class="font-semibold text-lg mb-1">Radiant Glow Serum</h3>
+          <p class="text-gray-600 mb-2">Hydrating serum with vitamin C and hyaluronic acid</p>
+          <span class="text-purple-600 font-bold">₹499</span>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/lipistick.jpg" alt="Luxe Matte Lipstick" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <button class="btn-secondary add-to-cart" data-id="shop2" data-name="Luxe Matte Lipstick" data-price="399.00">Add to Cart</button>
+          </div>
+        </div>
+        <div class="p-4 text-left">
+          <h3 class="font-semibold text-lg mb-1">Luxe Matte Lipstick</h3>
+          <p class="text-gray-600 mb-2">Long-lasting lipstick in 12 stunning shades</p>
+          <span class="text-purple-600 font-bold">₹399</span>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/night cream.jpg" alt="Hydration Night Cream" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <button class="btn-secondary add-to-cart" data-id="shop3" data-name="Hydration Night Cream" data-price="299.00">Add to Cart</button>
+          </div>
+        </div>
+        <div class="p-4 text-left">
+          <h3 class="font-semibold text-lg mb-1">Hydration Night Cream</h3>
+          <p class="text-gray-600 mb-2">Deep repair for dry, tired skin overnight</p>
+          <span class="text-purple-600 font-bold">₹299</span>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/silky hair.jpeg" alt="Silky Hair Mask" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <button class="btn-secondary add-to-cart" data-id="shop4" data-name="Silky Hair Mask" data-price="399.00">Add to Cart</button>
+          </div>
+        </div>
+        <div class="p-4 text-left">
+          <h3 class="font-semibold text-lg mb-1">Silky Hair Mask</h3>
+          <p class="text-gray-600 mb-2">Restores shine and smoothness to damaged hair</p>
+          <span class="text-purple-600 font-bold">₹399</span>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/rose water tonner.webp" alt="Rosewater Toner" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <button class="btn-secondary add-to-cart" data-id="shop5" data-name="Rosewater Toner" data-price="299.00">Add to Cart</button>
+          </div>
+        </div>
+        <div class="p-4 text-left">
+          <h3 class="font-semibold text-lg mb-1">Rosewater Toner</h3>
+          <p class="text-gray-600 mb-2">Gentle toner that balances skin pH</p>
+          <span class="text-purple-600 font-bold">₹299</span>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/foundation.jpg" alt="Velvet Foundation" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <button class="btn-secondary add-to-cart" data-id="shop6" data-name="Velvet Foundation" data-price="499.00">Add to Cart</button>
+          </div>
+        </div>
+        <div class="p-4 text-left">
+          <h3 class="font-semibold text-lg mb-1">Velvet Foundation</h3>
+          <p class="text-gray-600 mb-2">Full-coverage yet lightweight formula</p>
+          <span class="text-purple-600 font-bold">₹499</span>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/aloe repair gel.webp" alt="Aloe Repair Gel" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <button class="btn-secondary add-to-cart" data-id="shop7" data-name="Aloe Repair Gel" data-price="250.00">Add to Cart</button>
+          </div>
+        </div>
+        <div class="p-4 text-left">
+          <h3 class="font-semibold text-lg mb-1">Aloe Repair Gel</h3>
+          <p class="text-gray-600 mb-2">Soothes irritation and restores hydration</p>
+          <span class="text-purple-600 font-bold">₹250</span>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden">
+        <div class="relative group">
+          <img src="images/golden glow.jpg" alt="Golden Glow Face Oil" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <button class="btn-secondary add-to-cart" data-id="shop8" data-name="Golden Glow Face Oil" data-price="399.00">Add to Cart</button>
+          </div>
+        </div>
+        <div class="p-4 text-left">
+          <h3 class="font-semibold text-lg mb-1">Golden Glow Face Oil</h3>
+          <p class="text-gray-600 mb-2">Infused with argan and jojoba oils</p>
+          <span class="text-purple-600 font-bold">₹399</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-16 mb-10">
+      <a href="index.html#home" class="btn-secondary hover:animate-pulse">← Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- Cart Overlay -->
+<div id="cart-overlay" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 z-50 flex justify-end">
+  <div class="bg-white w-full max-w-md h-full transform transition-transform duration-300 translate-x-full">
+    <div class="flex justify-between items-center p-4 border-b">
+      <h3 class="text-xl font-bold">Your Cart (<span id="cart-count-title">0</span>)</h3>
+      <button id="close-cart-btn" class="p-2 text-gray-700 hover:text-purple-600">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div id="cart-items" class="p-4 overflow-y-auto" style="height: calc(100% - 180px);">
+      <p class="text-center text-gray-500 mt-10">Your cart is empty.</p>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 bg-white border-t p-4">
+      <div class="flex justify-between mb-4">
+        <span class="font-semibold">Subtotal:</span>
+        <span id="cart-subtotal">$0.00</span>
+      </div>
+      <button id="paynow-btn" class="btn-secondary w-full disabled:opacity-50 disabled:cursor-not-allowed" disabled>Pay Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- Payment + QR + Success Modals -->
+<div id="payment-option-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-center relative w-80">
+    <button id="close-payment-option" class="absolute top-2 right-2 text-gray-600 hover:text-red-500"><i class="fas fa-times"></i></button>
+    <h2 class="text-xl font-bold mb-4">Select Payment Method</h2>
+    <button id="cod-btn" class="btn-secondary w-full mb-3">Cash on Delivery</button>
+    <button id="qrpay-btn" class="btn-secondary w-full">Pay via QR</button>
+  </div>
+</div>
+
+<div id="qr-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-center relative w-80">
+    <button id="close-qr" class="absolute top-2 right-2 text-gray-600 hover:text-red-500"><i class="fas fa-times"></i></button>
+    <h2 class="text-xl font-bold mb-4">Scan to Pay</h2>
+    <img id="qr-img" src="images/qr.png" alt="QR Code" class="mx-auto mb-4 w-48 h-48"/>
+    <button id="confirm-order" class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded">Confirm Payment</button>
+  </div>
+</div>
+
+<div id="success-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center">
+  <div class="bg-white p-6 rounded-lg text-center relative w-80">
+    <h2 class="text-2xl font-bold text-purple-600 mb-4">🎉 Order Placed!</h2>
+    <p class="text-gray-600 mb-4">Thank you for shopping with us!</p>
+    <button id="close-success" class="btn-primary w-full">Okay</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
